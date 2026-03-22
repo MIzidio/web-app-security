@@ -16,7 +16,7 @@ Já as arquiteturas de segurança referem-se à forma como os mecanismos de segu
 
 Ao longo desse período tem sido trocado o ranking das vulnerabilidades web, algumas tem ganhado mais espaço com ataques bem-sucedidos, como é o caso da Quebra de controle de Acesso que está em primeiro lugar, mostrando que há uma necessidade de controles mais rigorosos de autorização e não depende apenas da correção de falhas de implementação, mas sim adoção de princípios de segurança ao longo de todo o ciclo de vida do desenvolvimento. 
 
-As falhas criptográficas subiram para segunda posição, uma vulnerabilidade que muitas vezes leva à exposição de dados confidenciais ou sistemas comprometidos. A injeção que em 2017 estava em primeiro lugar, perdeu espaço e, em 2021 foi rebaixada para a terceira posição com uma taxa de incidência máxima de 19%, uma taxa de incidência média de 3,37%. Houve a criação de novos grupos, como Design Inseguro, que está em quarto lugar destacando problemas estruturais de arquitetura e modelagem de segurança desde as fases iniciais do desenvolvimento, como por exemplo, confiar apenas em verificações no frontend, ao invés de validar no servidor \cite{owasp:2021}.
+As falhas criptográficas subiram para segunda posição, uma vulnerabilidade que muitas vezes leva à exposição de dados confidenciais ou sistemas comprometidos. A injeção que em 2017 estava em primeiro lugar, perdeu espaço e, em 2021 foi rebaixada para a terceira posição com uma taxa de incidência máxima de 19\%, uma taxa de incidência média de 3,37\%. Houve a criação de novos grupos, como Design Inseguro, que está em quarto lugar destacando problemas estruturais de arquitetura e modelagem de segurança desde as fases iniciais do desenvolvimento, como por exemplo, confiar apenas em verificações no frontend, ao invés de validar no servidor \cite{owasp:2021}.
 
 \subsubsection{
     Vulnerabilidades de Injeção (SQLi, Command, LDAP)
@@ -24,12 +24,7 @@ As falhas criptográficas subiram para segunda posição, uma vulnerabilidade qu
 
 As vulnerabilidades de injeção constituem uma das classes mais conhecidas e exploradas em aplicações web. Elas ocorrem quando o usuário (cliente) fornece dados que são interpretados pelo servidor como parte de comando ou consultas executadas por sistemas subjacentes, como banco de dados ou sistemas operacionais. Para mitigar esse tipo de ataque deve-se usar uma validação rigorosa das entradas do usuário, uso de bibliotecas seguras de acesso (por exemplo, Object Relational Mapping \- ORM), princípio do menor privilégio e monitoramento contínuo de logs de acesso e execução. 
 
-Começando pelo SQL injection (SQLi) é uma vulnerabilidade que o usuário utiliza comandos SQL, por exemplo, 
-\begin{verbatim}
-    SELECT * FROM <tabela> WHERE <coluna>='' OR 1=1
-\end{verbatim}
-
-para acessar, modificar ou até excluir dados sensíveis do banco de dados daquela aplicação web. O comando 1=1 é uma tautologia, ou seja, a condição sempre será verdadeira, ignorando a condição original na cláusula WHERE e retornando todas as linhas da tabela \cite{appelt:2014}. 
+Começando pelo SQL injection (SQLi) é uma vulnerabilidade que o usuário utiliza comandos SQL, (por exemplo, \verb|SELECT * FROM <tabela> WHERE <coluna>='' OR 1=1|) para acessar, modificar ou até excluir dados sensíveis do banco de dados daquela aplicação web. O comando 1=1 é uma tautologia, ou seja, a condição sempre será verdadeira, ignorando a condição original na cláusula WHERE e retornando todas as linhas da tabela \cite{appelt:2014}. 
 
 Outro tipo de ataque de injeção importante também é o command injection, uma vulnerabilidade em que a aplicação permite que dados fornecidos por um usuário sejam incorporados diretamente em comandos executados pelo sistema operacional. Isso pode levar a acesso ou modificação de arquivos sensíveis, escalada de privilégios, instalação de malwares ou backdoors e até o comprometimento completo do servidor. 
 
@@ -70,20 +65,21 @@ Na grande parte dos sistemas web, recursos como perfis de usuário, pedidos, doc
 
 Exemplificando, o site https://site.com/pedido?id=1025, o parâmetro está recebendo um ID de pedido, se o servidor não fizer a verificação de autenticação, um atacante pode alterar o ID do pedido e ter acesso aos pedidos pertencente a outros usuários.
 
+
+{
+\color{red}
 \subsubsection{
     Falhas Criptográficas
 }
-
-blob
+essa seção sumiu, mesmo?
+}
 
 \subsubsection{Misconfiguration e Supply Chain}
 
 As más configurações (misconfiguration) ocorrem quando sistemas são implantados com definições inseguras, seja por falta de conhecimento técnico, ausência de políticas padronizadas ou por erro humano. Exemplos clássicos incluem buckets de armazenamento em nuvem com permissões de leitura pública, portas de administração expostas à internet, banco de dados sem autenticação adequada, senhas com valores padrões e etc. De acordo com relatórios da Cloud Security Aliance, as más configurações representam uma das principais causas de violação de dados em ambiente cloud \cite{cloudsecurityalliance:2024}.
-
 
 Os impactos são diversos como acesso não autorizado aos sistemas, vazamento de informações sensíveis, execução de ataques automatizados e até o comprometimento completo da aplicação ou servidor.
 
 Já o ataque Supply chain tem se tornado cada vez mais sofisticado e frequente. Estes ataques exploram as relações de confiança estabelecidas entre organizações e seus fornecedores, bibliotecas de código aberto, frameworks e pipelines de integração contínua. Um invasor pode comprometer um componente amplamente utilizado e, através dele, infectar outras aplicações que dependem daquele componente. Como exemplo notório o incidente em 2018 no qual foi inserido um código malicioso na biblioteca event-stream no npm (gerenciador de pacotes Node), o código inserido teve como objetivo coletar a chave privada da carteira de criptomoedas, criptografar com uma chave pública embutida e enviar via HTTP para servidores remotos.
 
 Esse exemplo ilustra os danos gerados, como execução de código malicioso dentro de aplicações legítimas, roubo de dados sensíveis, comprometimento em larga escala de múltiplos sistemas e distribuição de malware para usuários finais.
-% \end{document}
