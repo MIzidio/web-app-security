@@ -1,6 +1,6 @@
 \subsection{
     Taxonomia de Vulnerabilidades
-} \label{sec:vulnerabilities_taxonomy}
+} \label{sec:taxonomia_vulnerabilidades}
 
 Entre os principais conceitos utilizados para estruturar as vulnerabilidades e métodos de mitigação são eles a taxonomia, os mecanismos de segurança e as arquiteturas de segurança. Esses três elementos possuem papéis complementares e inter-relacionados no processo de identificação, prevenção e mitigação de vulnerabilidades em sistemas computacionais.  
 
@@ -9,7 +9,6 @@ A taxonomia de vulnerabilidades permite organizar falhas de segurança em catego
 Os mecanismos de segurança, por sua vez, correspondem às técnicas, ferramentas e controles utilizados para prevenir, detectar ou mitigar vulnerabilidades. Esses mecanismos incluem práticas como validação de entrada de dados, autenticação multifator, criptografia, controle de acesso, filtragem de entrada e monitoramento de logs.
 
 Já as arquiteturas de segurança referem-se à forma como os mecanismos de segurança são organizados e integrados dentro da estrutura de um sistema ou aplicação. A arquitetura define como diferentes componentes de segurança interagem entre si, estabelecendo camadas de proteção que contribuem para a defesa do sistema como um todo. Modelos arquiteturais como *defense in depth* e arquiteturas baseadas em microsserviços com isolamento de componentes são exemplos de estratégias utilizadas para fortalecer a segurança de aplicações modernas. 
-
 
 \subsubsection{
     Framework OWASP Top 10: evolução 2017 → 2021
@@ -25,8 +24,11 @@ As falhas criptográficas subiram para segunda posição, uma vulnerabilidade qu
 
 As vulnerabilidades de injeção constituem uma das classes mais conhecidas e exploradas em aplicações web. Elas ocorrem quando o usuário (cliente) fornece dados que são interpretados pelo servidor como parte de comando ou consultas executadas por sistemas subjacentes, como banco de dados ou sistemas operacionais. Para mitigar esse tipo de ataque deve-se usar uma validação rigorosa das entradas do usuário, uso de bibliotecas seguras de acesso (por exemplo, Object Relational Mapping \- ORM), princípio do menor privilégio e monitoramento contínuo de logs de acesso e execução. 
 
-Começando pelo SQL injection (SQLi) é uma vulnerabilidade que o usuário utiliza comandos SQL
-% (exemplo: Select \* From \<tabela\> where \<coluna\>=’’ or 1=1 \--’) 
+Começando pelo SQL injection (SQLi) é uma vulnerabilidade que o usuário utiliza comandos SQL, por exemplo, 
+\begin{verbatim}
+    SELECT * FROM <tabela> WHERE <coluna>='' OR 1=1
+\end{verbatim}
+
 para acessar, modificar ou até excluir dados sensíveis do banco de dados daquela aplicação web. O comando 1=1 é uma tautologia, ou seja, a condição sempre será verdadeira, ignorando a condição original na cláusula WHERE e retornando todas as linhas da tabela \cite{appelt:2014}. 
 
 Outro tipo de ataque de injeção importante também é o command injection, uma vulnerabilidade em que a aplicação permite que dados fornecidos por um usuário sejam incorporados diretamente em comandos executados pelo sistema operacional. Isso pode levar a acesso ou modificação de arquivos sensíveis, escalada de privilégios, instalação de malwares ou backdoors e até o comprometimento completo do servidor. 

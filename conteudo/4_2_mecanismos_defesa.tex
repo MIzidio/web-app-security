@@ -1,34 +1,17 @@
 \subsection{
     Mecanismos de Defesa
-} \label{sec:defense_mechanisms}
+} \label{sec:mecanismos_defesa}
 
 Os mecanismos de defesa complementam a taxonomia de vulnerabilidades ao fornecer técnicas, ferramentas e controles concretos para prevenir, detectar ou mitigar ataques. Esta seção organiza as defesas por categoria de ataque, apresenta as ferramentas de análise estática e dinâmica, e discute as soluções de proteção em tempo de execução (runtime).
 
 \subsubsection{Defesas por categoria}
 
-Cada categoria de vulnerabilidade descrita nas seções anteriores possui mecanismos de defesa específicos, com diferentes níveis de efetividade e limitações. A Tabela \ref{tab:tecnicas_de_defesa} consolida a relação entre técnicas de defesa, ataques mitigados e suas restrições, com base em trabalhos de classificação como os de Halfond et al. (2006), Gupta e Gupta (2015), Barth et al. (2008) e OWASP Top 10:2021.
+Cada categoria de vulnerabilidade descrita nas seções anteriores possui mecanismos de defesa específicos, com diferentes níveis de efetividade e limitações. A Tabela \ref{tab:tecnicas_defesa} consolida a relação entre técnicas de defesa, ataques mitigados e suas restrições, com base em trabalhos de classificação como os de Halfond et al. (2006), Gupta e Gupta (2015), Barth et al. (2008) e OWASP Top 10:2021.
 
 \begin{table}[htbp]
-    \centering
     \caption{Técnicas de defesa por categoria de ataque e limitações}
-    \label{tab:tecnicas_de_defesa}
-    \small
-        \begin{tabularx}{\textwidth}{@{}>{\hsize=0.75\hsize}X >{\hsize=0.75\hsize}X >{\hsize=1.5\hsize}X@{}}
-        \toprule
-        \textbf{Técnica} & \textbf{Ataque} & \textbf{Limitações} \\ 
-        \midrule
-        \csvreader[head to column names, late after line=\\ \addlinespace]{data/table_tecnicas_de_defesa.csv}{}
-        {\tecnica & \ataque & \limitacoes}
-        \bottomrule
-        \multicolumn{3}{l}{
-            \footnotesize \textbf{Fonte:}
-            \cite{halfond:2006};
-            \cite{heide:2013};
-            \cite{gupta:2015};
-            \cite{barth:2008};
-            \cite{OWASP:2021}.
-        }
-    \end{tabularx}
+    \label{tab:tecnicas_defesa}
+    \input{tabelas/tabela_tecnicas_defesa}
 \end{table}
 
 \subsubsection{Ferramentas de análise: SAST, DAST, IAST}
@@ -36,21 +19,10 @@ Cada categoria de vulnerabilidade descrita nas seções anteriores possui mecani
 As ferramentas de análise de segurança permitem identificar vulnerabilidades em diferentes fases do ciclo de vida da aplicação. O SAST (Static Application Security Testing) analisa o código-fonte ou bytecode sem executar a aplicação, sendo adequado para integração em pipelines CI/CD \cite{alazmi:2022}. O DAST (Dynamic Application Security Testing) executa testes em tempo de execução, simulando ataques contra a aplicação em funcionamento; trabalhos como o de Sacramento et al. (2024) abordam a automação de autenticação em testes DAST com OWASP ZAP. O IAST (Interactive Application Security Testing) combina análise estática e dinâmica, instrumentando a aplicação durante testes funcionais para correlacionar fluxos de dados e identificar vulnerabilidades com maior precisão e menor taxa de falsos positivos \cite{seth:2025}. Uma SLR recente sobre testes de segurança em aplicações web \cite{ieee:2024} reforça a importância da combinação de abordagens para cobertura adequada.
 
 \begin{table}[htbp]
-    \centering
-    \caption{Características comparativas SAST, DAST, IAST}
-    \label{tab:caracteristicas_comparativas}
-    \small
-    \begin{tabularx}{\textwidth}{@{}XXXX@{}}
-        \toprule
-        \textbf{Critério} & \textbf{SAST} & \textbf{DAST} & \textbf{IAST} \\ 
-        \midrule
-        \csvreader[head to column names, late after line=\\ \addlinespace]{data/table_caracteristicas_comparativas.csv}{}
-        {\criterio & \sast & \dast & \iast}
-        \bottomrule
-        \multicolumn{4}{l}{\textbf{Fonte:} \footnotesize \cite{alazmi:2022}; \cite{sacramento:2024}; \cite{ieee:2024}; \cite{seth:2025}.}
-    \end{tabularx}
+    \caption{Comparativo SAST, DAST, IAST}
+    \label{tab:comparativo_sast_dast_iast}
+    \input{tabelas/tabela_comparativo_sast_dast_iast}
 \end{table}
-
 
 \subsubsection{Defesas em runtime: WAF, WAAP, RASP}
 
@@ -58,26 +30,12 @@ As defesas em runtime atuam quando a aplicação está em produção. O WAF (Web
 
 \subsubsection{Comparativo WAF × RASP}
 
-Sureda Riera et al. (2022) realizaram uma análise sistemática da efetividade de ferramentas de proteção em runtime, comparando WAF e RASP em diferentes categorias de ataque. Os resultados indicam que o RASP supera o WAF em precisão por categoria de ataque, em parte devido ao conhecimento contextual da aplicação. A Tabela  \ref{tab:defense_mechanisms} sintetiza o comparativo empírico com base nesse estudo.
+Sureda Riera et al. (2022) realizaram uma análise sistemática da efetividade de ferramentas de proteção em runtime, comparando WAF e RASP em diferentes categorias de ataque. Os resultados indicam que o RASP supera o WAF em precisão por categoria de ataque, em parte devido ao conhecimento contextual da aplicação. A Tabela  \ref{tab:comparativo_waf_rasp} sintetiza o comparativo empírico com base nesse estudo.
 
 \begin{table}[htbp]
-    \centering
     \caption{Comparativo empírico WAF × RASP}
-    \label{tab:defense_mechanisms}
-    \small
-    \begin{tabularx}{\textwidth}{@{}XXXX@{}}
-        \toprule
-            \textbf{Categoria \newline de ataque} 
-            & \textbf{WAF \newline (efetividade)} 
-            & \textbf{RASP \newline (efetividade)} 
-            & \textbf{Observação}
-            \\ 
-        \midrule
-        \csvreader[head to column names, late after line=\\ \addlinespace]{data/table_defense_mechanisms.csv}{}
-        {\categoria & \waf & \rasp & \observacao}
-        \bottomrule
-        \multicolumn{4}{l}{\textbf{Fonte:} \footnotesize \cite{alazmi:2022}; \cite{sacramento:2024}; \cite{ieee:2024}; \cite{seth:2025}.}
-    \end{tabularx}
+    \label{tab:comparativo_waf_rasp}
+    \input{tabelas/tabela_comparativo_waf_rasp}
 \end{table}
 
 Os autores recomendam o uso complementar de WAF e RASP: o WAF na borda para filtrar tráfego conhecido e mitigar DDoS, e o RASP para proteção contextual contra explorações que ultrapassem a camada perimetral.
