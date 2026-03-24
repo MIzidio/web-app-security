@@ -1,4 +1,3 @@
-{
 \subsection{
     Segurança de Arquiteturas Modernas
 }\label{sec:seguranca_arquiteturas_modernas}
@@ -31,7 +30,6 @@ O mTLS (Mutual Transport Layer Security) atua como pilar funcamental da arquitet
 
 A Rotação Agressiva de Certificados em vez de usar certificados estáticos, o componente Citadel do Istio emite automaticamente certificados X.509 com um período de validade muito curto, de apenas 24 horas. Para estreitar ainda mais a janela de oportunidade para atacantes, o sistema força a rotação desses certificados a cada 12 horas. Já os Tokens de Curta Duração utiliza JSON Web Tokens (JWTs) emitidos de forma centralizada para representar identidades. O documento alerta que o uso de tokens de curta duração minimiza os riscos de segurança, mas exige mecanismos muito eficientes para atualização.
 
-\color{red}
 \subsubsection{
     \textit{Cloud-native} — IaC \textit{scanning}, \textit{Kubernetes}, S3
 }\label{sec:cloud_native}
@@ -39,5 +37,3 @@ A Rotação Agressiva de Certificados em vez de usar certificados estáticos, o 
 Aplicações nativas da nuvem dependem ativamente de infraestruturas altamente dinâmicas e configuráveis (orquestradores de contêineres e armazenamento em provedores). O uso excessivo de recursos sem as restrições adequadas frequentemente leva a vulnerabilidades de Má Configuração de Segurança. Um cenário de ataque comum envolve permissões padrão em provedores de nuvem (CSP) deixadas abertas para a Internet (por exemplo, permissões de armazenamento do Amazon S3). Isso permite que dados confidenciais sejam facilmente acessados por qualquer usuário da rede. A prevenção exige processos de \textit{hardening} consistentes e a revisão constante das permissões de armazenamento em nuvem (ACLs e \textit{buckets}).
 
 Por fim, o ecossistema \textit{cloud-native} faz forte uso de Infraestrutura como Código (IaC) e \textit{pipelines} de CI/CD (Integração e Entrega Contínuas). O OWASP introduziu a categoria "Falhas na Integridade de Dados e Software" (A08:2021), focando em atualizações e \textit{pipelines} não verificados. Sem o devido controle, \textit{pipelines} de CI/CD podem introduzir acessos não autorizados ou implantar códigos maliciosos na infraestrutura. A defesa engloba a configuração e o controle de acesso restrito aos \textit{pipelines}, verificação de dependências com ferramentas de \textit{Software Composition Analysis} e a implementação de verificações focadas em Infraestrutura como Código (IaC) para prevenir vulnerabilidades de provisionamento.
-
-}
